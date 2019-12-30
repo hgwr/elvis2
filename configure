@@ -613,6 +613,11 @@ else
 	why "   Assuming no, because it isn't declared in <string.h> or <strings.h>"
 	NEED_MEMMOVE=define
 fi
+if fgrep memmove /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/secure/_string.h </dev/null >/dev/null
+then
+	why "   Assuming yes, because it is declared in MacOSX.sdk/usr/include/secure/_string.h"
+	NEED_MEMMOVE=undef
+fi
 case "$IOCTL" in
   termios)	USE=			;;
   termio)	USE=" -DUSE_TERMIO"	;;
